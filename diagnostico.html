@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Gratuito | Atlas Growth</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="menu">
+    <div class="logo">
+        <a href="index.html">
+            <img src="img/Design sem nome (10).png" alt="Atlas Growth">
+        </a>
+    </div>
+
+    <ul class="menu-links">
+        <li><a href="index.html">Voltar ao site</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section class="quiz-section">
+        <div class="quiz-box">
+
+            <h1>Diagnóstico gratuito para clínicas de estética</h1>
+            <p>Responda algumas perguntas rápidas para entendermos o potencial de crescimento da sua clínica.</p>
+
+            <form action="https://formspree.io/f/xjgdldbr" method="POST" id="quizForm">
+
+                <input type="hidden" name="_next" value="http://127.0.0.1:5500/obrigado.html">
+
+                <div class="quiz-step active">
+                    <h2>Qual é o faturamento mensal da clínica?</h2>
+
+                    <label><input type="radio" name="faturamento" value="Até R$ 20 mil" required> Até R$ 20 mil</label>
+                    <label><input type="radio" name="faturamento" value="R$ 20 mil a R$ 50 mil"> R$ 20 mil a R$ 50 mil</label>
+                    <label><input type="radio" name="faturamento" value="R$ 50 mil a R$ 100 mil"> R$ 50 mil a R$ 100 mil</label>
+                    <label><input type="radio" name="faturamento" value="Acima de R$ 100 mil"> Acima de R$ 100 mil</label>
+
+                    <button type="button" class="botao-principal next-btn">Próxima</button>
+                </div>
+
+                <div class="quiz-step">
+                    <h2>Sua clínica anuncia atualmente?</h2>
+
+                    <label><input type="radio" name="anuncia" value="Sim, no Instagram" required> Sim, no Instagram</label>
+                    <label><input type="radio" name="anuncia" value="Sim, no Google"> Sim, no Google</label>
+                    <label><input type="radio" name="anuncia" value="Sim, em ambos"> Sim, em ambos</label>
+                    <label><input type="radio" name="anuncia" value="Não anuncio"> Não anuncio</label>
+
+                    <button type="button" class="botao-principal next-btn">Próxima</button>
+                </div>
+
+                <div class="quiz-step">
+                    <h2>A clínica possui CRM?</h2>
+
+                    <label><input type="radio" name="crm" value="Sim" required> Sim</label>
+                    <label><input type="radio" name="crm" value="Não"> Não</label>
+                    <label><input type="radio" name="crm" value="Não sei o que é CRM"> Não sei o que é CRM</label>
+
+                    <button type="button" class="botao-principal next-btn">Próxima</button>
+                </div>
+
+                <div class="quiz-step">
+                    <h2>Qual é o maior desafio hoje?</h2>
+
+                    <label><input type="radio" name="desafio" value="Atrair mais pacientes" required> Atrair mais pacientes</label>
+                    <label><input type="radio" name="desafio" value="Aumentar agendamentos"> Aumentar agendamentos</label>
+                    <label><input type="radio" name="desafio" value="Organizar atendimento"> Organizar atendimento</label>
+                    <label><input type="radio" name="desafio" value="Escalar a clínica"> Escalar a clínica</label>
+
+                    <button type="button" class="botao-principal next-btn">Próxima</button>
+                </div>
+
+                <div class="quiz-step">
+                    <h2>Agora, deixe seus dados</h2>
+
+                    <input type="text" name="nome" placeholder="Seu nome" required>
+                    <input type="text" name="clinica" placeholder="Nome da clínica" required>
+                    <input type="tel" name="whatsapp" placeholder="WhatsApp" required>
+                    <input type="text" name="instagram" placeholder="@instagram da clínica">
+                    <input type="text" name="cidade" placeholder="Cidade">
+
+                    <button type="submit" class="botao-principal">
+                        Solicitar diagnóstico gratuito
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+</main>
+
+<script>
+    const steps = document.querySelectorAll(".quiz-step");
+    const nextButtons = document.querySelectorAll(".next-btn");
+
+    let currentStep = 0;
+
+    nextButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const currentInputs = steps[currentStep].querySelectorAll("input[required]");
+            let valid = false;
+
+            currentInputs.forEach(input => {
+                if (input.checked || input.value.trim() !== "") {
+                    valid = true;
+                }
+            });
+
+            if (!valid) {
+                alert("Selecione uma opção para continuar.");
+                return;
+            }
+
+            steps[currentStep].classList.remove("active");
+            currentStep++;
+            steps[currentStep].classList.add("active");
+        });
+    });
+</script>
+
+</body>
+</html>
