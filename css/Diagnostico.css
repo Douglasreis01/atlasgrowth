@@ -1,0 +1,384 @@
+:root {
+  --bg: #0A1120;
+  --bg-elevated: #0E1729;
+  --card: #101A2E;
+  --card-border: rgba(90, 150, 255, 0.16);
+  --ink: #F2F5FA;
+  --ink-soft: #8C99B3;
+  --blue: #3B82F6;
+  --blue-dark: #2563EB;
+  --blue-soft: rgba(59, 130, 246, 0.14);
+  --line: rgba(255, 255, 255, 0.09);
+  --danger: #F87171;
+  --danger-soft: rgba(248, 113, 113, 0.12);
+  --amber: #F59E0B;
+  --amber-soft: rgba(245, 158, 11, 0.12);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 50% 0%, #0F1A30 0%, var(--bg) 55%);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.gps-wrap {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.gps-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.gps-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 500;
+}
+
+.gps-title {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 6px 0 8px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.gps-subtitle {
+  color: var(--ink-soft);
+  font-size: 15px;
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Progress */
+.gps-progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 28px 0 20px;
+}
+
+.gps-progress-seg {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.gps-progress-seg > span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--blue);
+  transition: width 0.35s ease;
+}
+
+.gps-progress-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-soft);
+  text-align: right;
+  margin-bottom: 4px;
+}
+
+/* Card */
+.gps-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  box-shadow: 0 0 0 1px rgba(59,130,246,0.04), 0 20px 40px -20px rgba(0,0,0,0.6);
+}
+
+.gps-pillar-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--blue-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.gps-question {
+  font-family: 'Fraunces', serif;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 22px;
+  color: var(--ink);
+}
+
+.gps-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gps-option {
+  text-align: left;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14.5px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.gps-option:hover { border-color: var(--blue); }
+
+.gps-option:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.gps-option.selected {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+  font-weight: 500;
+}
+
+.gps-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.gps-btn-back {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 4px;
+}
+.gps-btn-back:disabled { visibility: hidden; }
+
+.gps-btn-next {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 6px 20px -6px rgba(59,130,246,0.55);
+  transition: opacity 0.15s ease, box-shadow 0.15s ease;
+}
+.gps-btn-next:disabled { opacity: 0.3; cursor: not-allowed; box-shadow: none; }
+.gps-btn-next:not(:disabled):hover { opacity: 0.92; }
+
+/* Result screen */
+.gps-result { text-align: center; }
+
+.gps-gauge-wrap { position: relative; width: 220px; margin: 4px auto 0; }
+
+.gps-gauge-num {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 18px;
+  font-family: 'Fraunces', serif;
+  font-size: 44px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.gps-gauge-max {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--ink-soft);
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -2px;
+}
+
+.gps-faixa-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.gps-faixa-critico  { background: var(--danger-soft); color: var(--danger); }
+.gps-faixa-reativo  { background: var(--amber-soft); color: var(--amber); }
+.gps-faixa-estruturada,
+.gps-faixa-escalavel { background: var(--blue-soft); color: var(--blue); }
+
+.gps-result-msg {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 440px;
+  margin: 16px auto 24px;
+}
+
+.gps-breakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 0 0 28px;
+  text-align: left;
+}
+
+.gps-breakdown-item {
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.gps-breakdown-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.gps-breakdown-value {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.gps-bar-track {
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.gps-bar-fill {
+  height: 100%;
+  background: var(--blue);
+  width: 0%;
+  transition: width 0.6s ease;
+}
+
+.gps-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px -8px rgba(59,130,246,0.6);
+  transition: opacity 0.15s ease;
+}
+.gps-cta:hover { opacity: 0.9; }
+
+.gps-restart {
+  display: block;
+  margin: 16px auto 0;
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Captura de contato (tela inicial) */
+.gps-field {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.gps-field label {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.gps-field input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg-elevated);
+}
+
+.gps-field input::placeholder { color: #5B6780; }
+
+.gps-field input:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.gps-field-error {
+  font-size: 12.5px;
+  color: var(--danger);
+  margin-top: 6px;
+  display: none;
+}
+
+.gps-field.invalid input { border-color: var(--danger); }
+.gps-field.invalid .gps-field-error { display: block; }
+
+.gps-btn-start {
+  width: 100%;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: #fff;
+  border: none;
+  padding: 15px 22px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 6px;
+  box-shadow: 0 8px 24px -8px rgba(59,130,246,0.6);
+  transition: opacity 0.15s ease;
+}
+.gps-btn-start:hover { opacity: 0.9; }
+
+.gps-privacy-note {
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

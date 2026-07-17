@@ -162,15 +162,11 @@ p {
 
 .hero {
     min-height: calc(100vh - 90px);
-
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
-
     align-items: center;
     gap: 40px;
-
-    padding: 40px 0 70px;
-
+    padding: 130px 0 70px;
     position: relative;
     overflow: hidden;
 }
@@ -224,7 +220,7 @@ p {
 
 .dores {
     position: relative;
-    padding: 100px 0;
+    padding: 100px 0 100px;
     text-align: center;
 }
 
@@ -1244,125 +1240,4 @@ p {
 .formulario button {
     border: none;
     cursor: pointer;
-}
-/* ======================
-   QUIZ DIAGNÓSTICO
-====================== */
-
-.quiz-section {
-    min-height: 100vh;
-    padding: 140px 20px 80px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.quiz-box {
-    width: 100%;
-    max-width: 720px;
-
-    padding: 48px 32px;
-
-    background: linear-gradient(
-        135deg,
-        rgba(8, 20, 38, 0.98),
-        rgba(11, 45, 92, 0.95)
-    );
-
-    border: 1px solid rgba(56, 189, 248, 0.25);
-    border-radius: 24px;
-
-    text-align: center;
-
-    box-shadow: 0 0 30px rgba(10,132,255,.12);
-}
-
-.quiz-box h1 {
-    font-size: 2rem;
-    margin-bottom: 14px;
-}
-
-.quiz-box p {
-    max-width: 560px;
-    margin: 0 auto 32px;
-}
-
-.quiz-step {
-    display: none;
-}
-
-.quiz-step.active {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.quiz-step h2 {
-    font-size: 1.45rem;
-    margin-bottom: 18px;
-}
-
-.quiz-step label {
-    padding: 16px 18px;
-
-    border: 1px solid rgba(56,189,248,.20);
-    border-radius: 12px;
-
-    background: #0F172A;
-    color: white;
-
-    cursor: pointer;
-    text-align: left;
-
-    transition: .3s;
-}
-
-.quiz-step label:hover {
-    border-color: #0A84FF;
-    box-shadow: 0 0 16px rgba(10,132,255,.20);
-}
-
-.quiz-step input[type="radio"] {
-    margin-right: 10px;
-}
-
-.quiz-step input[type="text"],
-.quiz-step input[type="tel"] {
-    width: 100%;
-    padding: 16px 18px;
-
-    border-radius: 12px;
-    border: 1px solid rgba(56,189,248,.20);
-
-    background: #0F172A;
-    color: white;
-
-    font-size: 1rem;
-    outline: none;
-}
-
-.quiz-step input:focus {
-    border-color: #0A84FF;
-    box-shadow: 0 0 18px rgba(10,132,255,.25);
-}
-
-.quiz-step button {
-    border: none;
-    cursor: pointer;
-    margin-top: 14px;
-}
-
-@media (max-width: 768px) {
-    .quiz-box {
-        padding: 36px 20px;
-    }
-
-    .quiz-box h1 {
-        font-size: 1.65rem;
-    }
-
-    .quiz-step h2 {
-        font-size: 1.25rem;
-    }
 }

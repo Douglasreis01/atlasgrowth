@@ -1,129 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnóstico Gratuito | Atlas Growth</title>
-
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Nota GPS — Atlas Growth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/Diagnostico.css">
 </head>
-
 <body>
 
-<nav class="menu">
-    <div class="logo">
-        <a href="index.html">
-            <img src="img/Design sem nome (10).png" alt="Atlas Growth">
-        </a>
+<div class="gps-wrap">
+  <div class="gps-header">
+    <div class="gps-eyebrow">Método GPS · Atlas Growth</div>
+    <h1 class="gps-title">Qual é a Nota GPS da sua clínica?</h1>
+    <p class="gps-subtitle">12 perguntas rápidas sobre geração de demanda, processo comercial e retenção. Ao final, você recebe sua nota e o que ela significa para o seu faturamento.</p>
+  </div>
+
+  <div id="gpsCaptureScreen" class="gps-card">
+    <div class="gps-field" id="gpsFieldNome">
+      <label for="gpsInputNome">Seu nome</label>
+      <input type="text" id="gpsInputNome" placeholder="Como podemos te chamar?" autocomplete="name">
+      <div class="gps-field-error">Digite seu nome pra gente continuar.</div>
+    </div>
+    <div class="gps-field" id="gpsFieldWhats">
+      <label for="gpsInputWhats">Seu WhatsApp</label>
+      <input type="tel" id="gpsInputWhats" placeholder="(11) 91234-5678" autocomplete="tel" inputmode="numeric">
+      <div class="gps-field-error">Digite um WhatsApp válido com DDD.</div>
+    </div>
+    <button class="gps-btn-start" id="gpsStartBtn" type="button">Começar diagnóstico →</button>
+    <p class="gps-privacy-note">Usamos seu contato só para te enviar o resultado e, se fizer sentido, agendar uma conversa. Sem spam.</p>
+  </div>
+
+  <div id="gpsQuizScreen" style="display:none;">
+    <div class="gps-progress-label" id="gpsProgressLabel">Pergunta 1 de 12</div>
+    <div class="gps-progress" id="gpsProgress"></div>
+
+    <div class="gps-card">
+      <span class="gps-pillar-tag" id="gpsPillarTag">G — Gerar demanda</span>
+      <p class="gps-question" id="gpsQuestionText"></p>
+      <div class="gps-options" id="gpsOptions"></div>
+
+      <div class="gps-nav">
+        <button class="gps-btn-back" id="gpsBackBtn">← Voltar</button>
+        <button class="gps-btn-next" id="gpsNextBtn" disabled>Próxima →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="gpsResultScreen" class="gps-card gps-result" style="display:none;">
+    <div class="gps-gauge-wrap">
+      <svg viewBox="0 0 220 130" width="220" height="130">
+        <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#E2DFD5" stroke-width="14" stroke-linecap="round"/>
+        <path id="gpsGaugeArc" d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#2F6F62" stroke-width="14" stroke-linecap="round"
+          stroke-dasharray="283" stroke-dashoffset="283"/>
+      </svg>
+      <div class="gps-gauge-num" id="gpsGaugeNum">0</div>
+      <div class="gps-gauge-max">/ 100</div>
     </div>
 
-    <ul class="menu-links">
-        <li><a href="index.html">Voltar ao site</a></li>
-    </ul>
-</nav>
+    <span class="gps-faixa-badge" id="gpsFaixaBadge"></span>
+    <p class="gps-result-msg" id="gpsResultMsg"></p>
 
-<main>
-    <section class="quiz-section">
-        <div class="quiz-box">
+    <div class="gps-breakdown" id="gpsBreakdown"></div>
 
-            <h1>Diagnóstico gratuito para clínicas de estética</h1>
-            <p>Responda algumas perguntas rápidas para entendermos o potencial de crescimento da sua clínica.</p>
+    <a class="gps-cta" id="gpsCtaLink" href="#" target="_blank" rel="noopener">Agendar minha avaliação estratégica</a>
+    <button class="gps-restart" id="gpsRestartBtn">Refazer diagnóstico</button>
+  </div>
+</div>
 
-            <form action="https://formspree.io/f/xjgdldbr" method="POST" id="quizForm">
-
-                <input type="hidden" name="_next" value="http://127.0.0.1:5500/obrigado.html">
-
-                <div class="quiz-step active">
-                    <h2>Qual é o faturamento mensal da clínica?</h2>
-
-                    <label><input type="radio" name="faturamento" value="Até R$ 20 mil" required> Até R$ 20 mil</label>
-                    <label><input type="radio" name="faturamento" value="R$ 20 mil a R$ 50 mil"> R$ 20 mil a R$ 50 mil</label>
-                    <label><input type="radio" name="faturamento" value="R$ 50 mil a R$ 100 mil"> R$ 50 mil a R$ 100 mil</label>
-                    <label><input type="radio" name="faturamento" value="Acima de R$ 100 mil"> Acima de R$ 100 mil</label>
-
-                    <button type="button" class="botao-principal next-btn">Próxima</button>
-                </div>
-
-                <div class="quiz-step">
-                    <h2>Sua clínica anuncia atualmente?</h2>
-
-                    <label><input type="radio" name="anuncia" value="Sim, no Instagram" required> Sim, no Instagram</label>
-                    <label><input type="radio" name="anuncia" value="Sim, no Google"> Sim, no Google</label>
-                    <label><input type="radio" name="anuncia" value="Sim, em ambos"> Sim, em ambos</label>
-                    <label><input type="radio" name="anuncia" value="Não anuncio"> Não anuncio</label>
-
-                    <button type="button" class="botao-principal next-btn">Próxima</button>
-                </div>
-
-                <div class="quiz-step">
-                    <h2>A clínica possui CRM?</h2>
-
-                    <label><input type="radio" name="crm" value="Sim" required> Sim</label>
-                    <label><input type="radio" name="crm" value="Não"> Não</label>
-                    <label><input type="radio" name="crm" value="Não sei o que é CRM"> Não sei o que é CRM</label>
-
-                    <button type="button" class="botao-principal next-btn">Próxima</button>
-                </div>
-
-                <div class="quiz-step">
-                    <h2>Qual é o maior desafio hoje?</h2>
-
-                    <label><input type="radio" name="desafio" value="Atrair mais pacientes" required> Atrair mais pacientes</label>
-                    <label><input type="radio" name="desafio" value="Aumentar agendamentos"> Aumentar agendamentos</label>
-                    <label><input type="radio" name="desafio" value="Organizar atendimento"> Organizar atendimento</label>
-                    <label><input type="radio" name="desafio" value="Escalar a clínica"> Escalar a clínica</label>
-
-                    <button type="button" class="botao-principal next-btn">Próxima</button>
-                </div>
-
-                <div class="quiz-step">
-                    <h2>Agora, deixe seus dados</h2>
-
-                    <input type="text" name="nome" placeholder="Seu nome" required>
-                    <input type="text" name="clinica" placeholder="Nome da clínica" required>
-                    <input type="tel" name="whatsapp" placeholder="WhatsApp" required>
-                    <input type="text" name="instagram" placeholder="@instagram da clínica">
-                    <input type="text" name="cidade" placeholder="Cidade">
-
-                    <button type="submit" class="botao-principal">
-                        Solicitar diagnóstico gratuito
-                    </button>
-                </div>
-
-            </form>
-        </div>
-    </section>
-</main>
-
-<script>
-    const steps = document.querySelectorAll(".quiz-step");
-    const nextButtons = document.querySelectorAll(".next-btn");
-
-    let currentStep = 0;
-
-    nextButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const currentInputs = steps[currentStep].querySelectorAll("input[required]");
-            let valid = false;
-
-            currentInputs.forEach(input => {
-                if (input.checked || input.value.trim() !== "") {
-                    valid = true;
-                }
-            });
-
-            if (!valid) {
-                alert("Selecione uma opção para continuar.");
-                return;
-            }
-
-            steps[currentStep].classList.remove("active");
-            currentStep++;
-            steps[currentStep].classList.add("active");
-        });
-    });
-</script>
-
+<script src="js/script.js"></script>
 </body>
 </html>
