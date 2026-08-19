@@ -35,7 +35,7 @@ main {
 }
 
 section {
-    padding: 80px 0;
+    padding: 80px 0px;
 }
 
 h1,
@@ -54,12 +54,13 @@ p {
     position: fixed;
 
     top: 0;
+    
     left: 0;
-
+    
     width: 100%;
-
+    
     z-index: 1000;
-
+    
     padding: 0px 80px;
 
     display: flex;
@@ -1241,3 +1242,32 @@ p {
     border: none;
     cursor: pointer;
 }
+
+#whatsapp-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+ 
+    width: 60px;
+    height: 60px;
+ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+    background: linear-gradient(135deg, #25D366, #1EBE5B);
+    color: #fff;
+    font-size: 30px;
+ 
+    border-radius: 50%;
+ 
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);
+    z-index: 9999;
+ 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+#whatsapp-btn:hover {
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 0 30px rgba(37, 211, 102, 0.55);
+}   
